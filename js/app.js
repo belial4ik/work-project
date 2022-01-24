@@ -1,12 +1,14 @@
 const content = document.querySelector("#content")
 const input = document.querySelector("#input")
 const btn = document.querySelector("#btn")
+const clear = document.querySelector("#clear")
 
 
 
 let arr = []
 
 let getStore = JSON.parse(localStorage.getItem('list'))
+console.log(getStore);
 
 function loadFromLocalStorage() {
   if (getStore) {
@@ -50,3 +52,5 @@ function createDeleteElement(value) {
 }
 
 loadFromLocalStorage()
+
+clear.onclick = () => localStorage.clear()

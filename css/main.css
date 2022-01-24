@@ -21,3 +21,8 @@
   text-align: center;
 }
 
+#clear {
+  position: fixed;
+  bottom: 0;
+  background-color: red;
+}
