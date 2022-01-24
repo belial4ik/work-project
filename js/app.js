@@ -5,6 +5,8 @@ const clear = document.querySelector("#clear")
 
 
 
+
+
 let arr = []
 
 let getStore = JSON.parse(localStorage.getItem('list'))
@@ -12,12 +14,11 @@ console.log(getStore);
 
 function loadFromLocalStorage() {
   if (getStore) {
-    var p = document.createElement("p")
-    for (let i = 0; i < getStore.length; i++) {
-      p.innerHTML = getStore[i]
-    }
-    content.appendChild(p)
-  }
+    getStore.forEach(element => {
+      let p = document.createElement("p")
+      content.appendChild(p)
+      p.innerHTML += element
+    });}
 }
 
 if (getStore !== null) {
@@ -53,4 +54,7 @@ function createDeleteElement(value) {
 
 loadFromLocalStorage()
 
-clear.onclick = () => localStorage.clear()
+clear.onclick = () => {
+  localStorage.clear()
+  location.reload() 
+}
