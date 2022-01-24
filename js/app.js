@@ -3,14 +3,10 @@ const input = document.querySelector("#input")
 const btn = document.querySelector("#btn")
 const clear = document.querySelector("#clear")
 
-
-
-
-
-let arr = []
+const arr = []
 
 let getStore = JSON.parse(localStorage.getItem('list'))
-console.log(getStore);
+console.log(getStore === null);
 
 function loadFromLocalStorage() {
   if (getStore) {
@@ -19,14 +15,6 @@ function loadFromLocalStorage() {
       content.appendChild(p)
       p.innerHTML += element
     });}
-}
-
-if (getStore !== null) {
-  const p = document.createElement("p")
-  for (let i = 0; i < getStore.length; i++) {
-    p.innerHTML = getStore[i]
-    content.childNodes = p
-  }
 }
 
 btn.addEventListener('click', (e) => {
@@ -40,15 +28,16 @@ btn.addEventListener('click', (e) => {
 
 function createDeleteElement(value) {  
   const p = document.createElement("p")
-  const btn = document.createElement("button")
 
   p.innerHTML = value
   content.appendChild(p)
-  arr.push(value)
-  arr
-  console.log(arr);
+  if (getStore === null) {
+    arr.push(value)
+  } else {
+    getStore.push(value)
+  }
 
-  let store = JSON.stringify(arr)
+  let store = getStore === null ? JSON.stringify(arr) : JSON.stringify(getStore)
   localStorage.setItem('list', store)
 }
 
